@@ -1,0 +1,30 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# read-only: CI never writes to the repository
+permissions:
+  contents: read
+
+jobs:
+  install:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # the manifest from this checkout, with Scoop's own installer (the runner is an administrator)
+      - name: scoop install
+        shell: pwsh
+        run: |
+          Invoke-Expression "& {$(Invoke-RestMethod https://get.scoop.sh)} -RunAsAdmin"
+          $env:Path = "$env:USERPROFILE\scoop\shims;$env:Path"
+          scoop install .\bucket\envhound.json
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          envhound --version
+          envhound why envhound
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
