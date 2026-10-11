@@ -1,12 +1,12 @@
 {
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Find which startup file sets each environment variable, and audit your PATH",
   "homepage": "https://github.com/michelsalib/envhound",
   "license": "MIT",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/michelsalib/envhound/releases/download/v0.4.2/envhound-windows-x64.exe#/envhound.exe",
-      "hash": "ab35075e662fb3a537ee53134c81412ec228dd84c4ec19306245b7d94199d1fd"
+      "url": "https://github.com/michelsalib/envhound/releases/download/v0.4.3/envhound-windows-x64.exe#/envhound.exe",
+      "hash": "6c7f89890fa24360d9226dfead2150015e96cf1270acfc485adbe2e9d829be71"
     }
   },
   "bin": "envhound.exe",
